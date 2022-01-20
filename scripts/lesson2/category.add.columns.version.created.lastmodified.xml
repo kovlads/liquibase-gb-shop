@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd ">
+
+    <changeSet id="before_category_add_column.CATEGORY_VERSION" author="koncha.vlad" context="postgresql" labels="category_version">
+        <tagDatabase tag="before_product_add_column_manufacturer_id"/>
+    </changeSet>
+
+    <changeSet id="product_add_column.VERSION" author="koncha.vlad" context="postgresql" labels="category_version">
+        <addColumn tableName="CATEGORY">
+            <column name="VERSION" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="before_category_add_column.CREATED" author="koncha.vlad" context="postgresql" labels="category_created">
+        <tagDatabase tag="before_product_add_column_manufacturer_id"/>
+    </changeSet>
+
+    <changeSet id="product_add_column.CREATED_BY" author="koncha.vlad" context="postgresql" labels="category_created_by">
+        <addColumn tableName="CATEGORY">
+            <column name="CREATED_BY" type="BIGINT"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="CATEGORY" baseColumnNames="CREATED_BY"
+                                 constraintName="FK_CATEGORY_CREATED_BY"
+                                 referencedTableName="ACCOUNT_USER"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="product_add_column.CREATED_DATE" author="koncha.vlad" context="postgresql" labels="category_created_date">
+        <addColumn tableName="CATEGORY">
+            <column name="CREATED_DATE" type="date"/>
+        </addColumn>
+    </changeSet>
+
+
+    <changeSet id="product_add_column.LAST_MODIFIED_BY" author="koncha.vlad" context="postgresql" labels="category_last_modified_by">
+        <addColumn tableName="CATEGORY">
+            <column name="LAST_MODIFIED_BY" type="BIGINT"/>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="CATEGORY" baseColumnNames="LAST_MODIFIED_BY"
+                                 constraintName="FK_CATEGORY_LAST_MODIFIED_BY"
+                                 referencedTableName="ACCOUNT_USER"
+                                 referencedColumnNames="ID"/>
+    </changeSet>
+
+    <changeSet id="product_add_column.LAST_MODIFIED_DATE" author="koncha.vlad" context="postgresql" labels="category_last_modified_date">
+        <addColumn tableName="CATEGORY">
+            <column name="LAST_MODIFIED_DATE" type="date"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
